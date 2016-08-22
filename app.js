@@ -6,6 +6,8 @@ app.use(express.static('public'));
 
 //plain bodyParser() is deprecated. Required to parse json from the request body.
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 //register the todo api
 require('./api.js')(app);

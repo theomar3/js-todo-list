@@ -2,10 +2,10 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var exec = require('child_process').exec;
 
-gulp.task('default', ['scss', 'scss:watch', 'server']);
+gulp.task('default', ['scss', 'scss:watch', 'app']);
 
-gulp.task('server', function (cb) {
-  exec('node server.js', function (err, stdout, stderr) {
+gulp.task('app', function (cb) {
+  exec('node app.js', function (err, stdout, stderr) {
     cb(err);
   });
 });
