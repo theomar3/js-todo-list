@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -16,76 +15,69 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+  display: block; }
+
 body {
-	line-height: 1;
-}
+  line-height: 1; }
+
 ol, ul {
-	list-style: none;
-}
+  list-style: none; }
+
 blockquote, q {
-	quotes: none;
-}
+  quotes: none; }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+  content: '';
+  content: none; }
 
-body {
-	background-color: #EEE;
-	font-family: Helvetica, Verdana, sans-serif;
-}
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
 
 .container {
-	background-color: #FFF;
-	border: solid 1px #CCC;
-	margin: 20px auto;
-	max-width: 500px;
-	padding: 20px;
-}
+  margin: 30px auto;
+  border: 1px solid gray;
+  max-width: 600px;
+  padding: 2%; }
 
 h1 {
-	font-size: 1.5em;
-	font-weight: bold;
-}
+  font-size: 1.5em;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-bottom: 10px; }
 
-.container input {
-	border: none;
-	font-size: 1em;
-	margin-top: 10px;
-	outline: solid 1px #DDD;
-	padding: 10px 2%;
-	width: 96%;
-}
+#item-input {
+  padding: 1.4%;
+  width: 80%; }
 
 .list {
-	min-height: 100px;
-}
+  overflow: auto; }
 
 .list li {
-	background-color: #EEE;
-	border: solid 1px #CCC;
-	margin: 10px 0;
-	padding: 10px;
-}
+  margin-top: 10px;
+  width: 80%;
+  background-color: #EEE;
+  padding: 1.4%;
+  border: 1px solid black;
+  float: left; }
 
-.list li.complete {
-	color: #777;
-	text-decoration: line-through;
-}
+#edit-button, #delete-button {
+  max-width: 3.2%;
+  border: 1px solid gray;
+  padding: 2px;
+  float: right;
+  margin-right: 1%; }
+
+#edit-button {
+  margin-right: 3%; }
