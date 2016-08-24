@@ -8,18 +8,7 @@ if (this.ToDo === undefined) this.ToDo = {};
 
 
   function addListItem() {
-
-
-    var $templateHtml = $('#todo-template').html();
-    var templateFunc = _.template($templateHtml);
-
-    var html = templateFunc(
-      {
-        listItem: $input.val()
-      }
-    );
-
-    $list.append(html);
+    // var inputVal = $input.val();
 
 
     $.ajax({
@@ -32,16 +21,23 @@ if (this.ToDo === undefined) this.ToDo = {};
     })
     .done(function (result){
       console.log(result);
-    });
+      var templateHtml = $('#todo-template').html();
+      var templateFunc = _.template(templateHtml);
 
-    $input.val(' ');
+      var html = templateFunc(
+        {
+          listItem: $input.val(),
+          taskId: result.id
+        }
+      );
+      $list.append(html);
+      $input.val(' ');
+
+    });
 
   }
 
-
-
   function keyUpHappened(evt) {
-
 
     if(evt.keyCode === 13) {
       addListItem();
@@ -58,13 +54,25 @@ if (this.ToDo === undefined) this.ToDo = {};
 
       var html = templateFunc(
         {
-          listItem: data.list[i].text
+          listItem: data.list[i].text,
+          taskId : data.list[i].id
         }
       );
 
       $list.append(html);
 
     }
+  }
+
+  function deleteGuest(evt) {
+    var $target = $(evt.target);
+    var id = $target.data('id');
+
+    $.ajax({
+      url: '/api/todo/' + id,
+      method: 'DELETE'
+    });
+
   }
 
   function start() {
@@ -76,6 +84,9 @@ if (this.ToDo === undefined) this.ToDo = {};
       url: '/api/todo'
     });
     promise.done(apiRetrieved);
+
+    var $list = $('.list');
+    $list.on('click', deleteGuest);
 
   }
 

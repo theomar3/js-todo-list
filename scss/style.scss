@@ -32,7 +32,7 @@ h1 {
   float: left;
 }
 
-#edit-button, #delete-button {
+.edit-button, .delete-button {
   max-width: 3.2%;
   border: 1px solid gray;
   padding: 2px;
@@ -41,6 +41,6 @@ h1 {
 
 }
 
-#edit-button {
+.edit-button {
   margin-right: 3%;
 }

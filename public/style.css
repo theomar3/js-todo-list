@@ -72,12 +72,12 @@ h1 {
   border: 1px solid black;
   float: left; }
 
-#edit-button, #delete-button {
+.edit-button, .delete-button {
   max-width: 3.2%;
   border: 1px solid gray;
   padding: 2px;
   float: right;
   margin-right: 1%; }
 
-#edit-button {
+.edit-button {
   margin-right: 3%; }
