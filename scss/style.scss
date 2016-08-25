@@ -32,6 +32,10 @@ h1 {
   float: left;
 }
 
+.item-done {
+  text-decoration: line-through;
+}
+
 .edit-button, .delete-button {
   max-width: 3.2%;
   border: 1px solid gray;

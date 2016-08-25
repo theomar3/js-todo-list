@@ -5,6 +5,7 @@ if (this.ToDo === undefined) this.ToDo = {};
 
   var $input = $('#item-input');
   var $list = $('.list');
+  var done;
 
 
   function addListItem() {
@@ -60,11 +61,12 @@ if (this.ToDo === undefined) this.ToDo = {};
       );
 
       $list.append(html);
+      done;
 
     }
   }
 
-  function deleteGuest(evt) {
+  function deleteItem(evt) {
     var $target = $(evt.target);
     var id = $target.data('id');
 
@@ -72,6 +74,15 @@ if (this.ToDo === undefined) this.ToDo = {};
       url: '/api/todo/' + id,
       method: 'DELETE'
     });
+
+    $target.parent().remove();
+
+  }
+
+  function doneItem(evt) {
+    var $target = $(evt.target);
+
+    done = $target.addClass('item-done');
 
   }
 
@@ -86,7 +97,9 @@ if (this.ToDo === undefined) this.ToDo = {};
     promise.done(apiRetrieved);
 
     var $list = $('.list');
-    $list.on('click', deleteGuest);
+    $list.on('click',".delete-button", deleteItem);
+
+    $list.on('click', doneItem );
 
   }
 
