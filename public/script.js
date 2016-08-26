@@ -7,34 +7,39 @@ if (this.ToDo === undefined) this.ToDo = {};
   var $list = $('.list');
   var done;
 
+  function templateEntry(text, taskId, isComplete) {
+    var className = '';
+    if (isComplete == 'true') {
+      className = 'item-done';
+    }
+
+    var templateHtml = $('#todo-template').html();
+    var templateFunc = _.template(templateHtml);
+    var html = templateFunc(
+      {
+        text: text,
+        taskId: taskId,
+        className: className
+      }
+    );
+    $list.append(html);
+    $input.val('');
+  }
 
   function addListItem() {
-    // var inputVal = $input.val();
 
-
-    $.ajax({
+    var promise = $.ajax({
       url: '/api/todo',
       method: 'POST',
       data: {
         text: $input.val(),
         isComplete: false
       }
-    })
-    .done(function (result){
-      console.log(result);
-      var templateHtml = $('#todo-template').html();
-      var templateFunc = _.template(templateHtml);
-
-      var html = templateFunc(
-        {
-          listItem: $input.val(),
-          taskId: result.id
-        }
-      );
-      $list.append(html);
-      $input.val(' ');
-
     });
+    promise.done(function(data){
+      templateEntry($input.val(), data.id, false);
+    });
+
 
   }
 
@@ -45,30 +50,23 @@ if (this.ToDo === undefined) this.ToDo = {};
     }
   }
 
-  function apiRetrieved(data) {
-    console.log(data);
+  function apiRetrieved() {
+    var promise = $.ajax({
+      url: '/api/todo'
+    });
+    promise.done(function(data) {
+      console.log(data);
 
-
-    for(var i = 0; i < data.list.length; i++) {
-      var $templateHtml = $('#todo-template').html();
-      var templateFunc = _.template($templateHtml);
-
-      var html = templateFunc(
-        {
-          listItem: data.list[i].text,
-          taskId : data.list[i].id
-        }
-      );
-
-      $list.append(html);
-      done;
-
-    }
+      data.list.forEach(function(entry) {
+        console.log(entry);
+        templateEntry(entry.text, entry.id, entry.isComplete );
+      });
+    });
   }
 
   function deleteItem(evt) {
     var $target = $(evt.target);
-    var id = $target.data('id');
+    var id = $target.parent().data('id');
 
     $.ajax({
       url: '/api/todo/' + id,
@@ -81,25 +79,38 @@ if (this.ToDo === undefined) this.ToDo = {};
 
   function doneItem(evt) {
     var $target = $(evt.target);
+    var id = $target.data('id');
+    var text = $target.data('text');
 
-    done = $target.addClass('item-done');
 
+
+    $.ajax({
+      url: '/api/todo/' + id,
+      method: 'PUT',
+      data: {
+        text: text,
+        id: id,
+        isComplete: true
+
+      }
+    });
+
+    $target.parent().addClass('item-done');
   }
+
+
 
   function start() {
 
 
     $input.on('keyup', keyUpHappened);
 
-    var promise = $.ajax({
-      url: '/api/todo'
-    });
-    promise.done(apiRetrieved);
+    apiRetrieved();
 
-    var $list = $('.list');
+
     $list.on('click',".delete-button", deleteItem);
 
-    $list.on('click', doneItem );
+    $list.on('click', doneItem);
 
   }
 

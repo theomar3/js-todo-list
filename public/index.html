@@ -19,9 +19,9 @@
       </ul>
 
       <script type="text/template" id="todo-template">
-        <li>
-          <%= listItem %>
-          <img class="delete-button" data-id="<%=taskId%>" src="trash.svg"/>
+        <li class="<%= className %>" data-id="<%=taskId%>" data-text="<%=text%>">
+          <%= text %>
+          <img class="delete-button"   src="trash.svg"/>
           <img class="edit-button" src="edit.svg"/>
         </li>
       </script>
