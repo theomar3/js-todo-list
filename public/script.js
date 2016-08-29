@@ -65,6 +65,8 @@ if (this.ToDo === undefined) this.ToDo = {};
   }
 
   function deleteItem(evt) {
+    evt.stopPropagation();
+
     var $target = $(evt.target);
     var id = $target.parent().data('id');
 
@@ -95,7 +97,7 @@ if (this.ToDo === undefined) this.ToDo = {};
       }
     });
 
-    $target.parent().addClass('item-done');
+    $target.addClass('item-done');
   }
 
 
@@ -105,6 +107,7 @@ if (this.ToDo === undefined) this.ToDo = {};
 
     $input.on('keyup', keyUpHappened);
 
+    //when page is refreshed
     apiRetrieved();
 
 
