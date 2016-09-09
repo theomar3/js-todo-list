@@ -20,10 +20,9 @@
       </ul>
 
       <script type="text/template" id="todo-template">
-        <li data-id="<%= taskId %>" data-id="<%= text %>" class="<%= className %>">
-          <%= text %>
-          <img src="trash.svg" class="delete-button" />
-          <img src="edit.svg" class="edit-button" />
+        <li class="<%= className%>" data-id='<%=id%>' data-text='<%=text%>'>
+          <%=text%>
+          <img  class="delete-button" src='trash.svg'/>
         </li>
       </script>
 
